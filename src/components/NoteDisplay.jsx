@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import { useStyles } from './styles1'
 
-export default function NoteDisplay({note}) {
+export default function NoteDisplay({note, deleteNotes}) {
     const classes = useStyles();
     return (
         <>
@@ -10,7 +10,7 @@ export default function NoteDisplay({note}) {
                 <h4>{note.title}</h4>
                 <p>{note.content}</p>
                 <div className="car-button" style={{display: "flex"}}>
-                    <button class="btn btn-primary" type="submit">Delete</button>
+                    <button class="btn btn-primary" type="submit" onClick={deleteNotes} value={note.id}>Delete</button>
                 </div>
             </Paper>
         </>

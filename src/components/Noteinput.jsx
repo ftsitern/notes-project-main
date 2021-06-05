@@ -2,15 +2,19 @@ import React, { useState } from 'react';
 import { useStyles } from './styles';
 import Paper from '@material-ui/core/Paper';
 import NoteDisplay from './NoteDisplay';
+import uniqueString from 'unique-string';
 
 export default function Noteinput() {
-    const [note, setNote] = useState({ title: " " , content: " " });
+    const [note, setNote] = useState({id: " ", title: " " , content: " " });
     const [notes, setNotes] = useState([]);
     const classes = useStyles();
 
-    // const deleteNotes = () => {  to done by chand
-        
-    // }
+    const deleteNotes = (e) => {  
+        const newnotes = notes.filter((value) => {
+            return value.id !== e.target.value
+        })
+        setNotes(newnotes);
+    }
 
     // const editNotes = () => {  to do by satwik
 
@@ -18,9 +22,12 @@ export default function Noteinput() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         setNotes((prevNotes) => {
             return [...prevNotes, note]
         });
+
+        console.log(notes);
     }
 
     return (
@@ -36,7 +43,7 @@ export default function Noteinput() {
                     <label className="form-label">Write note</label>
                     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value={note.content} onChange={(e) => setNote({...note, content : e.target.value})}></textarea>
                 </div>
-                <button class="btn btn-primary" type="submit">Add Note</button>
+                <button class="btn btn-primary" type="submit" onClick={() => setNote({...note, id: uniqueString()})}>Add Note</button>
                 </form>
             </Paper>
             <div className="container" style={{position: 'relative', top: 100}}>
@@ -44,7 +51,7 @@ export default function Noteinput() {
                     {notes.length === 0 ? null : 
                     notes.map((note) => (
                         <div className="col-sm-3">
-                            <NoteDisplay note={note}/>
+                            <NoteDisplay note={note} deleteNotes={deleteNotes}/>
                         </div>
                     ))}
                 </div>
