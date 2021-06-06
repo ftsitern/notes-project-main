@@ -32,7 +32,7 @@ export default function Noteinput() {
     });
 
     console.log(notes);
-  };
+   }
 
   return (
     <>
