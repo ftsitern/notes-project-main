@@ -4,41 +4,38 @@ import Paper from "@material-ui/core/Paper";
 import NoteDisplay from "./NoteDisplay";
 import uniqueString from "unique-string";
 
-
-
 export default function Noteinput() {
-    const [note, setNote] = useState({ id: " ", title: " ", content: " " });
-    const [notes, setNotes] = useState([]);
-    const classes = useStyles();
-  
-    const deleteNotes = (e) => {
-      const newnotes = notes.filter((value) => {
-        return value.id !== e.target.value;
-      });
-      setNotes(newnotes);
-    };
-  
-    const editNotes = (e) => {
-      const noteToBeEdited = notes.find((value) => value.id === e.target.value);
-      const newNotes = notes.filter((value) => value.id !== e.target.value);
-      setNote(noteToBeEdited);
-      console.log(noteToBeEdited);
-      setNotes(newNotes);
-    };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-  
-      setNotes((prevNotes) => {
-        return [...prevNotes, note];
-      });
-  
-      console.log(notes);
-    };
-  
+  const [note, setNote] = useState({ id: " ", title: " ", content: " " });
+  const [notes, setNotes] = useState([]);
+  const classes = useStyles();
 
-    return (
-           <>
+  const deleteNotes = (e) => {
+    const newnotes = notes.filter((value) => {
+      return value.id !== e.target.value;
+    });
+    setNotes(newnotes);
+  };
+
+  const editNotes = (e) => {
+    const noteToBeEdited = notes.find((value) => value.id === e.target.value);
+    const newNotes = notes.filter((value) => value.id !== e.target.value);
+    setNote(noteToBeEdited);
+    console.log(noteToBeEdited);
+    setNotes(newNotes);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setNotes((prevNotes) => {
+      return [...prevNotes, note];
+    });
+
+    console.log(notes);
+  };
+
+  return (
+    <>
       <Paper elevation={3} className={classes.root}>
         <form onSubmit={handleSubmit} style={{ width: "90%" }}>
           <div class="mb-3">
@@ -85,5 +82,6 @@ export default function Noteinput() {
         </div>
       </div>
     </>
-    )
+  );
 }
+
