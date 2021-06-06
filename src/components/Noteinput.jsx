@@ -4,8 +4,6 @@ import Paper from "@material-ui/core/Paper";
 import NoteDisplay from "./NoteDisplay";
 import uniqueString from "unique-string";
 
-
-
 export default function Noteinput() {
     const [note, setNote] = useState({ id: " ", title: " ", content: " " });
     const [notes, setNotes] = useState([]);
