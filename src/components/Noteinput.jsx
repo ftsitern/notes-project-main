@@ -17,7 +17,11 @@ export default function Noteinput() {
 
   const getTimeStamp = () => {
     let d = new Date();
+<<<<<<< HEAD
     return d.toString().slice(3, 21);
+=======
+    return d.toString().slice(0, 21);
+>>>>>>> fa693501b86e7ec6392088d241953a3e6c4d05a9
   };
 
   const deleteNotes = (e) => {
@@ -101,4 +105,8 @@ export default function Noteinput() {
       </div>
     </>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> fa693501b86e7ec6392088d241953a3e6c4d05a9
