@@ -31,8 +31,8 @@ export default function Noteinput() {
       return [...prevNotes, note];
     });
 
-    console.log(notes);
-   }
+    setNote({ id: " ", title: " ", content: " " });
+  }
 
   return (
     <>
