@@ -5,9 +5,20 @@ import NoteDisplay from "./NoteDisplay";
 import uniqueString from "unique-string";
 
 export default function Noteinput() {
-  const [note, setNote] = useState({ id: " ", title: " ", content: " " });
+  const [note, setNote] = useState({
+    id: " ",
+    title: " ",
+    content: " ",
+    edited: false,
+    date: "",
+  });
   const [notes, setNotes] = useState([]);
   const classes = useStyles();
+
+  const getTimeStamp = () => {
+    let d = new Date();
+    return d.toString().slice(0, 21);
+  };
 
   const deleteNotes = (e) => {
     const newnotes = notes.filter((value) => {
@@ -18,25 +29,29 @@ export default function Noteinput() {
 
   const editNotes = (e) => {
     const noteToBeEdited = notes.find((value) => value.id === e.target.value);
-    const newNotes = notes.filter((value) => value.id !== e.target.value);
+    noteToBeEdited.edited = true;
     setNote(noteToBeEdited);
     console.log(noteToBeEdited);
-    setNotes(newNotes);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setNotes((prevNotes) => {
-      return [...prevNotes, note];
-    });
-
-    setNote({ id: " ", title: " ", content: " " });
-  }
+    const newNotes = notes.filter((value) => value.edited === false);
+    setNotes(newNotes);
+    note.edited = false;
+    note.date = getTimeStamp();
+    setNotes((prevNotes) => [...prevNotes, note]);
+    setNote({ id: " ", title: " ", content: " ", edited: false });
+    console.log(note);
+  };
 
   return (
     <>
-      <Paper elevation={3} className={classes.root} style={{backgroundColor: "black"}}>
+      <Paper
+        elevation={3}
+        className={classes.root}
+        style={{ backgroundColor: "black" }}
+      >
         <form onSubmit={handleSubmit} style={{ width: "90%" }}>
           <div class="mb-3">
             <label className="form-label">Title</label>
@@ -60,8 +75,10 @@ export default function Noteinput() {
           <button
             class="btn btn-primary"
             type="submit"
-            onClick={() => setNote({ ...note, id: uniqueString() })}
-            style={{backgroundColor: "#ff8303"}}
+            onClick={() =>
+              setNote({ ...note, id: uniqueString(), date: getTimeStamp() })
+            }
+            style={{ backgroundColor: "#ff8303" }}
           >
             Add Note
           </button>
@@ -85,4 +102,3 @@ export default function Noteinput() {
     </>
   );
 }
-
