@@ -3,15 +3,16 @@ import Paper from "@material-ui/core/Paper";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useStyles } from "./styles1";
+import moment from "moment";
 
 export default function NoteDisplay({ note, deleteNotes, editNotes }) {
   const classes = useStyles();
   const [isClicked, setClicked] = useState(false);
-  var currentdate = new Date();
-  var displayDate = currentdate.getDay() + "/" + currentdate.getMonth() 
-  + "/" + currentdate.getFullYear()+ "," + " "
-  + currentdate.getHours() + ":" 
-  + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+  var displayDate = moment().calendar();
+  // var displayDate = currentdate.getDay() + "/" + currentdate.getMonth() 
+  // + "/" + currentdate.getFullYear()+ "," + " "
+  // + currentdate.getHours() + ":" 
+  // + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
   const changeStyle = () => {
       if(isClicked)
