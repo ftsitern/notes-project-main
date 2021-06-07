@@ -7,6 +7,11 @@ import { useStyles } from "./styles1";
 export default function NoteDisplay({ note, deleteNotes, editNotes }) {
   const classes = useStyles();
   const [isClicked, setClicked] = useState(false);
+  var currentdate = new Date();
+  var displayDate = currentdate.getDay() + "/" + currentdate.getMonth() 
+  + "/" + currentdate.getFullYear()+ "," + " "
+  + currentdate.getHours() + ":" 
+  + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
   const changeStyle = () => {
       if(isClicked)
@@ -17,8 +22,11 @@ export default function NoteDisplay({ note, deleteNotes, editNotes }) {
 
   return (
     <>
-      <Paper elevation={3} className={classes.root}>
-        <h4>{note.title}</h4>
+      <Paper elevation={3} className={classes.root} style={{backgroundColor: "black"}}>
+        <div style={{display: "flex", justifyContent: "space-between"}}>
+          <h4>{note.title}</h4>
+          <small>Created on {displayDate}</small>
+        </div>
         <p>{note.content}</p>
         <div
           className="car-button"
@@ -29,6 +37,7 @@ export default function NoteDisplay({ note, deleteNotes, editNotes }) {
             type="submit"
             onClick={deleteNotes}
             value={note.id}
+            style={{backgroundColor: "#ff8303"}}
           >
             Delete
           </button>
@@ -37,11 +46,12 @@ export default function NoteDisplay({ note, deleteNotes, editNotes }) {
             type="submit"
             onClick={editNotes}
             value={note.id}
+            style={{backgroundColor: "#ff8303"}}
           >
             Edit ✏
           </button>
           <a type="button" onClick={changeStyle} style={{position: "relative", top: 5}}>{
-              isClicked ? <FavoriteIcon /> : <FavoriteBorderIcon />
+              isClicked ? <FavoriteIcon style={{color: "#ff8303"}}/> : <FavoriteBorderIcon style={{color: "#ff8303"}}/>
           }
           </a>
         </div>

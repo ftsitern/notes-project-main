@@ -1,0 +1,8 @@
+label, h4, p, small{
+    color: white;
+}
+
+small {
+    position: relative;
+    top: 7px;
+}

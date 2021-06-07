@@ -36,7 +36,7 @@ export default function Noteinput() {
 
   return (
     <>
-      <Paper elevation={3} className={classes.root}>
+      <Paper elevation={3} className={classes.root} style={{backgroundColor: "black"}}>
         <form onSubmit={handleSubmit} style={{ width: "90%" }}>
           <div class="mb-3">
             <label className="form-label">Title</label>
@@ -61,6 +61,7 @@ export default function Noteinput() {
             class="btn btn-primary"
             type="submit"
             onClick={() => setNote({ ...note, id: uniqueString() })}
+            style={{backgroundColor: "#ff8303"}}
           >
             Add Note
           </button>
