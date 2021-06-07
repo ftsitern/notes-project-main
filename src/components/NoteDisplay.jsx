@@ -8,11 +8,6 @@ import moment from "moment";
 export default function NoteDisplay({ note, deleteNotes, editNotes }) {
   const classes = useStyles();
   const [isClicked, setClicked] = useState(false);
-  var displayDate = moment().calendar();
-  // var displayDate = currentdate.getDay() + "/" + currentdate.getMonth() 
-  // + "/" + currentdate.getFullYear()+ "," + " "
-  // + currentdate.getHours() + ":" 
-  // + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
   const changeStyle = () => {
       if(isClicked)
@@ -24,10 +19,7 @@ export default function NoteDisplay({ note, deleteNotes, editNotes }) {
   return (
     <>
       <Paper elevation={3} className={classes.root} style={{backgroundColor: "black"}}>
-        <div style={{display: "flex", justifyContent: "space-between"}}>
           <h4>{note.title}</h4>
-          <small>Created on {displayDate}</small>
-        </div>
         <p>{note.content}</p>
         <div
           className="car-button"
