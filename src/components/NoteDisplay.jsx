@@ -3,7 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
-import moment from "moment";
+//import moment from "moment";
 import "./animation.css";
 
 export default function NoteDisplay({ note, deleteNotes, editNotes }) {
